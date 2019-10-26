@@ -1,8 +1,12 @@
 Sub VBAStocks_Clemmmons()
 
-    'Worksheet variable
+    'Worksheet variables
     Dim WS_Count As Integer
     WS_Count = ActiveWorkbook.Worksheets.Count
+    '
+    'Find the last row; Used "B" because "A" did not catch all rows
+    Dim LastRow As Long
+    LastRow = Cells(Rows.Count, "B").End(xlUp).Row
     
     'Summary Table
     Dim Summary_Table_Row As Integer
@@ -43,7 +47,7 @@ Sub VBAStocks_Clemmmons()
         If i = 7 Then
         
             'Sheet P has 261 rows per stock
-            For k = 2 To 550
+            For k = 2 To LastRow
             
                 If Cells(k, 1).Value <> Cells(k + 1, 1).Value Then
             
@@ -86,7 +90,7 @@ Sub VBAStocks_Clemmmons()
         Else
         
             'Sheets A through F have 262 rows per stock
-            For j = 2 To 550
+            For j = 2 To LastRow
             
                 If Cells(j, 1).Value <> Cells(j + 1, 1).Value Then
             
